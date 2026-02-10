@@ -13,17 +13,17 @@ def test_create_booking(api_client):
         "totalprice" : 111,
         "depositpaid" : True,
         "bookingdates" : {
-            "checkin" : "2026-01-01",
-            "checkout" : "2026-01-10"
+            "checkin" : "2027-01-01",
+            "checkout" : "2027-01-10"
         },
         "additionalneeds" : "Breakfast"
     }
     response_json = api_client.create_booking(payload)
     jsonschema.validate(response_json, BOOKING_SCHEMA)
 
-    assert response_json["firstname"] == payload["firstname"], "firstname не совпадает с ожидаемым"
-    assert response_json["lastname"] == payload["lastname"], "lastname не совпадает с ожидаемым"
-    assert response_json["totalprice"] == payload["totalprice"], "totalprice не совпадает с ожидаемым"
-    assert response_json["depositpaid"] == payload["depositpaid"], "depositpaid не совпадает с ожидаемым"
-    assert response_json["bookingdates"] == payload["bookingdates"], "bookingdates не совпадает с ожидаемым"
-    assert response_json["additionalneeds"] == payload["additionalneeds"], "additionalneeds не совпадает с ожидаемым"
+    assert response_json["booking"]["firstname"] == payload["firstname"], "firstname не совпадает с ожидаемым"
+    assert response_json["booking"]["lastname"] == payload["lastname"], "lastname не совпадает с ожидаемым"
+    assert response_json["booking"]["totalprice"] == payload["totalprice"], "totalprice не совпадает с ожидаемым"
+    assert response_json["booking"]["depositpaid"] == payload["depositpaid"], "depositpaid не совпадает с ожидаемым"
+    assert response_json["booking"]["bookingdates"] == payload["bookingdates"], "bookingdates не совпадает с ожидаемым"
+    assert response_json["booking"]["additionalneeds"] == payload["additionalneeds"], "additionalneeds не совпадает с ожидаемым"
